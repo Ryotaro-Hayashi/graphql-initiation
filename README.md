@@ -18,3 +18,10 @@
 - まず`schema.graphqls`にスキーマを書く
 - `go run github.com/99designs/gqlgen init`で自動生成 （スキーマに対応した良い感じのメソッドとモデルをresolverとmodels_genに生成してくれる）
 - 実装されていないresolverの詳細を実装する
+
+#### 改良してみる
+- `schema.graphqls`では、「TODO情報」モデルの中には「ユーザ情報」モデルを含み、「ユーザ情報」モデルの中にも”複数の”「TODO情報」モデルを含むようにする.
+- (このように定義しておくと、クライアントからこのモデルを取得するクエリを発行する際に階層構造ごと１クエリで取得することができる.)
+- graph/model/models.goには「TODO情報」モデルの中に「ユーザ情報」モデルを含まないように定義する.(「ユーザ情報」モデルの中にも複数の「TODO情報」モデルを含まないように）
+- gqlgen.ymlのmodelsにgraph/model/models.goで定義した構造体を設定
+- `go run github.com/99designs/gqlgen init`で自動生成
