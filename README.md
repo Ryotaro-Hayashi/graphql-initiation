@@ -22,6 +22,6 @@
 #### 改良してみる
 - `schema.graphqls`では、「TODO情報」モデルの中には「ユーザ情報」モデルを含み、「ユーザ情報」モデルの中にも”複数の”「TODO情報」モデルを含むようにする.
 - (このように定義しておくと、クライアントからこのモデルを取得するクエリを発行する際に階層構造ごと１クエリで取得することができる.)
-- graph/model/models.goには「TODO情報」モデルの中に「ユーザ情報」モデルを含まないように定義する.(「ユーザ情報」モデルの中にも複数の「TODO情報」モデルを含まないように）
-- gqlgen.ymlのmodelsにgraph/model/models.goで定義した構造体を設定
+- `graph/model/models.go`には「TODO情報」モデルの中に「ユーザ情報」モデルを含まないように定義する.(「ユーザ情報」モデルの中にも複数の「TODO情報」モデルを含まないように）
+- `gqlgen.yml`のmodelsに`graph/model/models.go`で定義した構造体を設定
 - `go run github.com/99designs/gqlgen init`で自動生成
